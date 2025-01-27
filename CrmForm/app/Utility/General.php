@@ -21,15 +21,17 @@ class General{
     public static function ValidateFormComponents(string $jsonString): string|null{
 
         
+        
         $formComponents = json_decode($jsonString, true);
         
         $validator = Validator::make($formComponents, [
             '*' => [ 'array', 'required', 'min:3'],
+            "*.stage_id" => "required|integer",
             "*.type" => "required|in:".implode(",", General::allInputType()),
             "*.validation" => "nullable|array",//this is the validation on the form input
             "*.label" => ["required"],
             "*.placeholder" => ["required"],
-            "*.required" =>["required", "boolean"],
+            "*.isRequired" =>["required", "boolean"],
         ], [
             '*' => [
                 'array' => 'Each item must be an array.',

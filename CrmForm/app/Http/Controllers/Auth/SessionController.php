@@ -68,4 +68,8 @@ class SessionController extends Controller
         $token->revoke();
         return $this->ApiResponse([], "You are logged out successfully");
     }
+
+    public function profile(Request $request) {
+        return $this->ApiResponse(new UserResource($request->user(), $request->bearerToken()), "User Profile.");
+    }
 }

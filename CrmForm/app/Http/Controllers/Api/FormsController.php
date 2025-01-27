@@ -37,6 +37,7 @@ class FormsController extends Controller
         
         return $this->ApiResponse(new FormCollection($formsCollection));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -166,9 +167,10 @@ class FormsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Forms $forms)
+    public function destroy(int $id)
     {
-        $form = Forms::find($forms->id);
+        $form = Forms::find($id);
+        
         if (!$form) {
             throw new NotFoundHttpException("Form not found");
         }
